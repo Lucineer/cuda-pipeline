@@ -2,7 +2,7 @@
 name = "cuda-pipeline"
 version = "0.1.0"
 edition = "2021"
-description = "Data pipeline — ETL stages, map/filter/reduce, throughput tracking"
+description = "Data pipeline with ETL stages"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/Lucineer/cuda-pipeline"
 readme = "README.md"
@@ -11,3 +11,4 @@ categories = ["science"]
 
 [dependencies]
 serde = { version = "1", features = ["derive"] }
+
