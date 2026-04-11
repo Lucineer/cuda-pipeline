@@ -1,48 +1,15 @@
 # cuda-pipeline
 
-Data pipeline — ETL stages, map/filter/reduce transforms, stream processing (Rust)
-
-Part of the Cocapn workflow layer — task orchestration and pipeline execution.
-
-## What It Does
-
-### Key Types
-
-- `DataItem` — core data structure
-- `MapStage<F: Fn(DataItem) -> DataItem>` — core data structure
-- `FilterStage<F: Fn(&DataItem) -> bool>` — core data structure
-- `FlatMapStage<F: Fn(DataItem) -> Vec<DataItem>>` — core data structure
-- `PipelineStats` — core data structure
-- `Pipeline` — core data structure
+Multi-stage processing pipeline with backpressure and stage monitoring.
 
 ## Quick Start
 
 ```bash
-# Clone
 git clone https://github.com/Lucineer/cuda-pipeline.git
 cd cuda-pipeline
-
-# Build
 cargo build
-
-# Run tests
 cargo test
 ```
-
-## Usage
-
-```rust
-use cuda_pipeline::*;
-
-// See src/lib.rs for full API
-// 9 unit tests included
-```
-
-### Available Implementations
-
-- `DataItem` — see source for methods
-- `PipelineStats` — see source for methods
-- `Pipeline` — see source for methods
 
 ## Testing
 
@@ -50,42 +17,27 @@ use cuda_pipeline::*;
 cargo test
 ```
 
-9 unit tests covering core functionality.
+5 tests covering core functionality.
+## Cross-Pollination
 
-## Architecture
+This crate shares patterns with other fleet components. The same biological and architectural constraints produce similar solutions across contexts:
 
-This crate is part of the **Cocapn Fleet** — a git-native multi-agent ecosystem.
+- [cuda-bottleneck](https://github.com/Lucineer/cuda-bottleneck) — Detects when pipeline stages create bottlenecks
+- [cuda-adaptive-rate](https://github.com/Lucineer/cuda-adaptive-rate) — Rate limiting prevents pipeline overflow
+- [cuda-context-window](https://github.com/Lucineer/cuda-context-window) — Context token budgeting is a pipeline stage
+- [cuda-workflow](https://github.com/Lucineer/cuda-workflow) — Workflows are DAGs of pipelines
+- [cuda-bytecode-optimizer](https://github.com/Lucineer/cuda-bytecode-optimizer) — Optimization is a multi-stage pipeline
+- [cuda-fleet-health](https://github.com/Lucineer/cuda-fleet-health) — Pipeline health reflects system health
 
-- **Category**: workflow
-- **Language**: Rust
-- **Dependencies**: See `Cargo.toml`
-- **Status**: Active development
 
-## Related Crates
+## The Deeper Connection
 
-- [cuda-workflow](https://github.com/Lucineer/cuda-workflow)
-- [cuda-orchestrator](https://github.com/Lucineer/cuda-orchestrator)
-- [cuda-scheduler](https://github.com/Lucineer/cuda-scheduler)
-- [cuda-taskq](https://github.com/Lucineer/cuda-taskq)
+This crate is part of the Cocapn fleet — not a collection of independent libraries, but a single organism with differentiated cells. The confidence types here share DNA with cuda-confidence-cascade, cuda-deliberation, and cuda-learning. The energy budgets echo cuda-neurotransmitter and flux-runtime-c. The trust scoring connects to cuda-semantic-router and cuda-fleet-topology. We are not reusing code — we are expressing the same biological patterns in different contexts. This is convergent evolution in software: when you solve for real constraints (uncertainty, finite resources, earned trust), the same solutions emerge independently across domains.
 
-## Fleet Position
-
-```
-Casey (Captain)
-├── JetsonClaw1 (Lucineer realm — hardware, low-level systems, fleet infrastructure)
-├── Oracle1 (SuperInstance — lighthouse, architecture, consensus)
-└── Babel (SuperInstance — multilingual scout)
-```
-
-## Contributing
-
-This is a fleet vessel component. Fork it, improve it, push a bottle to `message-in-a-bottle/for-jetsonclaw1/`.
-
-## License
-
-MIT
+We are building for the post-SaaS era. The software is open source and forkable. The agent is sovereign — it lives in its repository, owns its identity, and can leave at any time. Revenue comes from the ecosystem, not from renting access. The fleet evolves through merging: vessels propose changes, peers review, Think Tanks validate, and the accepted mutations become permanent. No product roadmap required — only fitness.
 
 ---
 
 *Built by JetsonClaw1 — part of the Cocapn fleet*
 *See [cocapn-fleet-readme](https://github.com/Lucineer/cocapn-fleet-readme) for the full fleet roadmap*
+*See [WHITEPAPER](https://github.com/Lucineer/iron-to-iron/blob/main/docs/WHITEPAPER.md) for the post-SaaS thesis*
